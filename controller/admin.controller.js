@@ -1,6 +1,7 @@
 import AdminServices from '../services/admin.services.js';
 import {validationResult} from "express-validator";
 import adminsServices from "../services/admin.services.js";
+import TournamentServices from "../services/tournament.services.js";
 
 
 class AdminController {
@@ -38,7 +39,6 @@ class AdminController {
   // Add user
   async addPlayer(req, res) {
     try {
-      // const {name, age, rating, country} = req.body;
       const  errors = validationResult(req);
       if(!errors.isEmpty()){
         return res.status(400).json({code : 400, message: errors.array()});
@@ -67,6 +67,21 @@ class AdminController {
       const id = req.params.id;
       const update = await adminsServices.updatePlayer(id, req.body)
       res.status(update.code).json(update);
+    }catch (e) {
+      return res.status(400).json({code : 400, type : "error", message: e.message});
+    }
+  }
+
+  async createTournament(req, res) {
+    try {
+      const  errors = validationResult(req);
+      if(!errors.isEmpty()){
+        return res.status(400).json({code : 400, message: errors.array()});
+      }
+
+      const data = req.body;
+      const tournamentData = await TournamentServices.createTournament(data)
+      res.status(tournamentData.code).json(tournamentData);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
     }

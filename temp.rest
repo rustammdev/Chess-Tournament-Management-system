@@ -34,11 +34,11 @@ GET localhost:7000/api/admin/players
 Content-Type: application/json
 
 ### Admin: Get Player
-GET localhost:7000/api/admin/player/66980cf412b91db82d831c62
+GET localhost:7000/api/admin/players/66980cf412b91db82d831c62
 Content-Type: application/json
 
 ### Admin: Add player
-POST localhost:7000/api/admin/player
+POST localhost:7000/api/admin/players
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 }
 
 ### Admin: Delete Player
-DELETE localhost:7000/api/admin/player
+DELETE localhost:7000/api/admin/players
 Content-Type: application/json
 
 {
@@ -57,9 +57,20 @@ Content-Type: application/json
 }
 
 ### Admin: Update Player
-PUT localhost:7000/api/admin/player/66980cf412b91db82d831c62
+PUT localhost:7000/api/admin/players/66980cf412b91db82d831c62
 Content-Type: application/json
 
 {
   "country": "Uzbekistan"
+}
+
+### Admin: Create Tournament
+POST localhost:7000/api/admin/tournaments
+Content-Type: application/json
+
+{
+  "name": "Summer Championship",
+  "startDate": "2024-08-01",
+  "endDate": "2024-08-10",
+  "participants": ["669803168da520e0107c14b5", "6698032f8da520e0107c14b7"]
 }

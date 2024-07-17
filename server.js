@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", MainRoute);
-app.use("/api", AdminRoute);
+app.use("/api/admin", AdminRoute);
 
 const PORT = process.env.PORT || 7000;
 const start = async () => {

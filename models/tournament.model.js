@@ -1,25 +1,22 @@
 import { model, Schema } from "mongoose";
 
-const PlayerSchema = new Schema(
+const TournamentSchema = new Schema(
     {
         name: {
             type: String,
             required: true
         },
-        age: {
-            type: Number,
-            required: true
-        },
-        rating: {
-            type: Number,
-            required: true
-        },
-        country: {
+        startDate: {
             type: String,
             required: true
         },
+        endDate: {
+            type: String,
+            required: true
+        },
+        participants: [{ type: Schema.Types.ObjectId, ref: "Players" }],
     },
     { timestamps: true }
 );
 
-export default model("Players", PlayerSchema);
+export default model("Tournament", TournamentSchema);

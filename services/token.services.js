@@ -21,8 +21,7 @@ class TokenServices{
             await  TokenModel.create({user : userId, refreshToken});
             return {message : "Token saved successfully."};
         }catch (e){
-            console.log(e)
-            return {message: "Failed to create token"};
+            return {code : 400, type : "error", message: "Failed to create token", error: e.message};
         }
     }
 
@@ -32,8 +31,7 @@ class TokenServices{
            await tokenModel.deleteOne({user : id})
            return {message : "Token deleted successfully."};
        }catch (e){
-           console.log(e)
-           return  {message : "Failed to delete token."};
+           return {code : 400, type : "error", message: "Failed to delete token.", error: e.message};
        }
     }
 
