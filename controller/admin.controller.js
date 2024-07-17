@@ -62,8 +62,16 @@ class AdminController {
     }
   }
 
-  async updateUser(req, res) {}
-  // Players part
+  async updateUser(req, res) {
+    try {
+      const id = req.params.id;
+      const update = await adminsServices.updatePlayer(id, req.body)
+      res.status(update.code).json(update);
+    }catch (e) {
+      return res.status(400).json({code : 400, type : "error", message: e.message});
+    }
+  }
+
 }
 
 export default new AdminController();

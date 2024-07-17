@@ -57,6 +57,19 @@ class AdminServices {
         }
     }
 
+    async updatePlayer(id, updateData) {
+        try {
+            const result = await PlayerModel.updateOne({ _id : id },  { $set : updateData });
+
+            if (result.matchedCount === 0) {
+                return { code: 200, message: "Player not found." };
+            }
+            return { status: "ok", code: 200, message: "Player updated successfully." };
+        } catch (e) {
+            return { code: 400, message: "Some error", error: e.message  };
+        }
+    }
+
     async deletePlayer(name) {
         try {
             const result = await PlayerModel.deleteOne({ name });

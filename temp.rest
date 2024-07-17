@@ -30,11 +30,11 @@ GET localhost:7000/api/admin
 Content-Type: application/json
 
 ### Admin: Get players
-GET localhost:7000/api/admin/player
+GET localhost:7000/api/admin/players
 Content-Type: application/json
 
 ### Admin: Get Player
-GET localhost:7000/api/admin/player/669803998da520e0107c14cb
+GET localhost:7000/api/admin/player/66980cf412b91db82d831c62
 Content-Type: application/json
 
 ### Admin: Add player
@@ -49,9 +49,17 @@ Content-Type: application/json
 }
 
 ### Admin: Delete Player
-DELETE localhost:7000/api/admin/user
+DELETE localhost:7000/api/admin/player
 Content-Type: application/json
 
 {
-  "email" : "deko@gmail.com"
+  "name": "Baadur Jobava"
+}
+
+### Admin: Update Player
+PUT localhost:7000/api/admin/player/66980cf412b91db82d831c62
+Content-Type: application/json
+
+{
+  "country": "Uzbekistan"
 }

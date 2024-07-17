@@ -42,10 +42,10 @@ const validateEmail = [
 // @access Private
 route.get("/admin", authMiddleware, adminMiddleware, AdminsController.welcome);
 
-// @desc Get users
+// @desc Get players
 // @route GET '/api/admin/user'
 // @access Private
-route.get("/admin/player", authMiddleware, adminMiddleware, AdminsController.getPlayers);
+route.get("/admin/players", authMiddleware, adminMiddleware, AdminsController.getPlayers);
 
 // @desc Get player
 // @route GET '/api/admin/player/:id'
@@ -53,18 +53,18 @@ route.get("/admin/player", authMiddleware, adminMiddleware, AdminsController.get
 route.get("/admin/player/:id", authMiddleware, adminMiddleware, AdminsController.getPlayer);
 
 // @desc Add players
-// @route Post '/api/admin'
+// @route Post '/api/admin/player'
 // @access Public
 route.post("/admin/player", validatePlayer, authMiddleware, adminMiddleware, AdminsController.addPlayer);
 
 // @desc Delete Users
-// @route Post '/api/admin/user'
+// @route Post '/api/admin/player'
 // @access Public
 route.delete("/admin/player", validateEmail, authMiddleware, adminMiddleware, AdminsController.deletePlayer);
 
-// // @desc Login
-// // @route Post '/api/login'
-// // @access Only users
-// route.post("/logout", authMiddleware, UserController.logout);
+// @desc Update Player
+// @route Post '/api/admin/player'
+// @access Only users
+route.put("/admin/player/:id", authMiddleware, adminMiddleware, AdminsController.updateUser);
 
 export default route;
