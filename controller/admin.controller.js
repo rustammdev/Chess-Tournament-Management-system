@@ -1,6 +1,6 @@
-import AdminServices from '../services/admins.services.js';
+import AdminServices from '../services/admin.services.js';
 import {validationResult} from "express-validator";
-import adminsServices from "../services/admins.services.js";
+import adminsServices from "../services/admin.services.js";
 
 
 class AdminController {
@@ -15,20 +15,20 @@ class AdminController {
   }
 
   // Get users
-  async getUsers(req, res) {
+  async getPlayers(req, res) {
     try {
-      const  users = await AdminServices.getUsers();
+      const  users = await AdminServices.getPlayers();
       res.status(users.code).json(users);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
     }
   }
 
-  // Get user
-  async getUser(req, res) {
+  // Get Player
+  async getPlayer(req, res) {
     try {
       const id = req.params.id;
-      const users = await AdminServices.getUser(id);
+      const users = await AdminServices.getPlayer(id);
       res.status(users.code).json(users);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
@@ -36,36 +36,34 @@ class AdminController {
   }
 
   // Add user
-  async addUser(req, res) {
+  async addPlayer(req, res) {
     try {
-      const {email, password, role} = req.body;
+      // const {name, age, rating, country} = req.body;
       const  errors = validationResult(req);
       if(!errors.isEmpty()){
         return res.status(400).json({code : 400, message: errors.array()});
       }
 
-      const  users = await AdminServices.addUser(email, password, role);
+      const  users = await AdminServices.addPlayer(req.body);
       res.status(users.code).json(users);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
     }
   }
 
-  async deleteUser(req, res) {
+  // Delete user
+  async deletePlayer(req, res) {
     try {
-      const {email} = req.body;
-
-      const  errors = validationResult(req);
-      if(!errors.isEmpty()){
-        return res.status(400).json({code : 400, message: errors.array()});
-      }
-
-      const deleteUserData = await adminsServices.delUser(email)
+      const {name} = req.body;
+      const deleteUserData = await adminsServices.deletePlayer(name)
       res.status(deleteUserData.code).json(deleteUserData);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
     }
   }
+
+  async updateUser(req, res) {}
+  // Players part
 }
 
 export default new AdminController();

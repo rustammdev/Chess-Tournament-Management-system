@@ -5,13 +5,30 @@ import adminMiddleware from "../middleware/admin.middleware.js";
 
 import { body } from "express-validator";
 const route = Router();
-const validateUser = [
-    body("email")
-        .isEmail()
-        .withMessage("Please enter a valid email address"),
-    body("password")
-        .isLength({ min: 5 })
-        .withMessage("Please enter a valid password"),
+const validatePlayer = [
+    body('name')
+        .isString()
+        .withMessage('Name must be a string')
+        .notEmpty()
+        .withMessage('Name is required'),
+
+    body('age')
+        .isInt({ min: 0 })
+        .withMessage('Age must be a non-negative integer')
+        .notEmpty()
+        .withMessage('Age is required'),
+
+    body('rating')
+        .isFloat({ min: 0, max: 3000 })
+        .withMessage('Rating must be a number between 0 and 3000')
+        .notEmpty()
+        .withMessage('Rating is required'),
+
+    body('country')
+        .isString()
+        .withMessage('Country must be a string')
+        .notEmpty()
+        .withMessage('Country is required')
 ];
 
 const validateEmail = [
@@ -28,22 +45,22 @@ route.get("/admin", authMiddleware, adminMiddleware, AdminsController.welcome);
 // @desc Get users
 // @route GET '/api/admin/user'
 // @access Private
-route.get("/admin/user", authMiddleware, adminMiddleware, AdminsController.getUsers);
+route.get("/admin/player", authMiddleware, adminMiddleware, AdminsController.getPlayers);
 
-// @desc Get user
-// @route GET '/api/admin/user/:id'
+// @desc Get player
+// @route GET '/api/admin/player/:id'
 // @access Private
-route.get("/admin/user/:id", authMiddleware, adminMiddleware, AdminsController.getUser);
+route.get("/admin/player/:id", authMiddleware, adminMiddleware, AdminsController.getPlayer);
 
-// @desc Add users
+// @desc Add players
 // @route Post '/api/admin'
 // @access Public
-route.post("/admin/user", validateUser, authMiddleware, adminMiddleware, AdminsController.addUser);
+route.post("/admin/player", validatePlayer, authMiddleware, adminMiddleware, AdminsController.addPlayer);
 
 // @desc Delete Users
 // @route Post '/api/admin/user'
 // @access Public
-route.delete("/admin/user", validateEmail, authMiddleware, adminMiddleware, AdminsController.deleteUser);
+route.delete("/admin/player", validateEmail, authMiddleware, adminMiddleware, AdminsController.deletePlayer);
 
 // // @desc Login
 // // @route Post '/api/login'

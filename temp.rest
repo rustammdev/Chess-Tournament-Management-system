@@ -16,7 +16,7 @@ POST localhost:7000/api/login
 Content-Type: application/json
 
 {
-  "email" : "deko@gmail.com",
+  "email" : "test@gmail.com",
   "password" : "test1"
 }
 
@@ -29,25 +29,26 @@ Content-Type: application/json
 GET localhost:7000/api/admin
 Content-Type: application/json
 
-### Admin: Get users
-GET localhost:7000/api/admin/user
+### Admin: Get players
+GET localhost:7000/api/admin/player
 Content-Type: application/json
 
-### Admin: Get users
-GET localhost:7000/api/admin/user/6697cdc5786efcf245e4b6df
+### Admin: Get Player
+GET localhost:7000/api/admin/player/669803998da520e0107c14cb
 Content-Type: application/json
 
-### Admin: Add user
-POST localhost:7000/api/admin/user
+### Admin: Add player
+POST localhost:7000/api/admin/player
 Content-Type: application/json
 
 {
-  "email" : "deko@gmail.com",
-  "password" : "test1",
-  "role" : "admin"
+  "name": "Baadur Jobava",
+  "age": 36,
+  "rating": 2702,
+  "country": "Gruziya"
 }
 
-### Admin: Delete user
+### Admin: Delete Player
 DELETE localhost:7000/api/admin/user
 Content-Type: application/json
 
