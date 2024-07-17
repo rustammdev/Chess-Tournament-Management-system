@@ -1,5 +1,6 @@
 import AdminServices from '../services/admins.services.js';
 import {validationResult} from "express-validator";
+import adminsServices from "../services/admins.services.js";
 
 
 class AdminController {
@@ -34,6 +35,22 @@ class AdminController {
 
       const  users = await AdminServices.addUser(email, password, role);
       res.status(users.code).json(users);
+    }catch (e) {
+      return res.status(400).json({code : 400, type : "error", message: e.message});
+    }
+  }
+
+  async deleteUser(req, res) {
+    try {
+      const {email} = req.body;
+
+      const  errors = validationResult(req);
+      if(!errors.isEmpty()){
+        return res.status(400).json({code : 400, message: errors.array()});
+      }
+
+      const deleteUserData = await adminsServices.delUser(email)
+      res.status(deleteUserData.code).json(deleteUserData);
     }catch (e) {
       return res.status(400).json({code : 400, type : "error", message: e.message});
     }

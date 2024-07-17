@@ -6,7 +6,7 @@ POST localhost:7000/api/register
 Content-Type: application/json
 
 {
-  "email" : "rustam@gmail.com",
+  "email" : "rustam2@gmail.com",
   "password" : "test1",
   "role" : "admin"
 }
@@ -16,7 +16,7 @@ POST localhost:7000/api/login
 Content-Type: application/json
 
 {
-  "email" : "test@gmail.com",
+  "email" : "deko@gmail.com",
   "password" : "test1"
 }
 
@@ -38,7 +38,15 @@ POST localhost:7000/api/admin/user
 Content-Type: application/json
 
 {
-  "email" : "rustam@gmail.com",
+  "email" : "deko@gmail.com",
   "password" : "test1",
   "role" : "admin"
+}
+
+### Admin: Delete user
+DELETE localhost:7000/api/admin/user
+Content-Type: application/json
+
+{
+  "email" : "deko@gmail.com"
 }

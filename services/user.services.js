@@ -71,6 +71,18 @@ class UserServices {
     }
   }
 
+  async deleteUser(email) {
+    try {
+      const result = await UserModel.deleteOne({ email });
+      if (result.deletedCount === 0) {
+        return { code: 404, message: "User not found." };
+      }
+      return { status: "ok", code: 200, message: "User deleted successfully." };
+    } catch (e) {
+      return { code: 400, message: "Some error" };
+    }
+  }
+
   async logout(refreshToken) {
     try {
       const data = await tokenServices.deleteToken(refreshToken);

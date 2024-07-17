@@ -25,6 +25,14 @@ class AdminServices {
             return { code: 403, message: "Failed to find users" };
         }
     }
+
+    async delUser(email) {
+        try {
+            return await UserServices.deleteUser(email);
+        } catch (e) {
+            return { code: 403, message: "Failed to find users" };
+        }
+    }
 }
 
 export default new AdminServices();
