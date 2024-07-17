@@ -33,6 +33,10 @@ Content-Type: application/json
 GET localhost:7000/api/admin/user
 Content-Type: application/json
 
+### Admin: Get users
+GET localhost:7000/api/admin/user/6697cdc5786efcf245e4b6df
+Content-Type: application/json
+
 ### Admin: Add user
 POST localhost:7000/api/admin/user
 Content-Type: application/json

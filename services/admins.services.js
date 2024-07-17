@@ -17,6 +17,20 @@ class AdminServices {
         }
     }
 
+    async getUser(id) {
+        try {
+            const user = await UserModel.findById({_id: id});
+            return {
+                status: "ok",
+                code: 200,
+                user
+            };
+        } catch (e) {
+            console.log(e.message);
+            return { code: 403, message: "Failed to find users" };
+        }
+    }
+
     async addUser(email, password, role) {
         try {
             return await UserServices.registeration(email, password, role);

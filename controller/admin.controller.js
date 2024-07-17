@@ -24,6 +24,17 @@ class AdminController {
     }
   }
 
+  // Get user
+  async getUser(req, res) {
+    try {
+      const id = req.params.id;
+      const users = await AdminServices.getUser(id);
+      res.status(users.code).json(users);
+    }catch (e) {
+      return res.status(400).json({code : 400, type : "error", message: e.message});
+    }
+  }
+
   // Add user
   async addUser(req, res) {
     try {

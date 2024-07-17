@@ -30,6 +30,11 @@ route.get("/admin", authMiddleware, adminMiddleware, AdminsController.welcome);
 // @access Private
 route.get("/admin/user", authMiddleware, adminMiddleware, AdminsController.getUsers);
 
+// @desc Get user
+// @route GET '/api/admin/user/:id'
+// @access Private
+route.get("/admin/user/:id", authMiddleware, adminMiddleware, AdminsController.getUser);
+
 // @desc Add users
 // @route Post '/api/admin'
 // @access Public
