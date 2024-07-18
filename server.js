@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 // route
 import MainRoute from "./routes/main.route.js";
 import  AdminRoute from "./routes/admin.route.js";
+import MatchRoute from "./routes/tournament.route.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cookieParser());
 
 app.use("/api", MainRoute);
 app.use("/api/admin", AdminRoute);
+app.use("/api/admin", MatchRoute)
 
 const PORT = process.env.PORT || 7000;
 const start = async () => {

@@ -15,6 +15,7 @@ const TournamentSchema = new Schema(
             required: true
         },
         participants: [{ type: Schema.Types.ObjectId, ref: "Players" }],
+        rounds: [{ type: Schema.Types.ObjectId, ref: 'Round' }]
     },
     { timestamps: true }
 );

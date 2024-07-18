@@ -47,6 +47,15 @@ class TournamentServices{
             return { code: 400, type : 'error', message: "Some error", error: e.message  };
         }
     }
+
+    async makePairs(id) {
+        try {
+            const data = await TournamentModel.findById({_id : id})
+            return data
+        }catch(e){
+            return { code: 400, type : 'error', message: "Some error", error: e.message  };
+        }
+    }
 }
 
 export  default  new TournamentServices()

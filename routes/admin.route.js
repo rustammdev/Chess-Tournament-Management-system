@@ -5,8 +5,6 @@ import adminMiddleware from "../middleware/admin.middleware.js";
 import { validatePlayer, validateEmail, validateTournament, validateParticipants} from "../validations/validations.js"
 const route = Router();
 
-// validations
-
 route
     // @desc Welcome
     // @route GET '/api/admin'

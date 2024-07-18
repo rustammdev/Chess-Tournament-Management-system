@@ -82,3 +82,20 @@ Content-Type: application/json
 {
   "participants" : "669803998da520e0107c14cb"
 }
+
+
+### Create Round
+POST localhost:7000/api/admin/round/6698f03a9728a4059af940c8
+Content-Type: application/json
+
+{
+  "roundNumber" : 1
+}
+
+### Create Match
+POST localhost:7000/api/admin/match/6698f0739728a4059af940cb
+Content-Type: application/json
+
+{
+  "result" : "1-0"
+}
