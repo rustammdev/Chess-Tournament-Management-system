@@ -85,14 +85,16 @@ Content-Type: application/json
 
 
 ### Create Round
+# turnir id
 POST localhost:7000/api/admin/round/6698f03a9728a4059af940c8
 Content-Type: application/json
 
 {
-  "roundNumber" : 1
+  "roundNumber" : 2
 }
 
 ### Create Match
+# round id
 POST localhost:7000/api/admin/match/6698f0739728a4059af940cb
 Content-Type: application/json
 

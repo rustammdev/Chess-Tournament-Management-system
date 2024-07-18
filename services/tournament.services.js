@@ -1,6 +1,9 @@
 import TournamentModel from "../models/tournament.model.js";
 import PlayerModel from "../models/player.model.js";
 import mongoose from "mongoose";
+import roundModel from "../models/round.model.js";
+import tournamentModel from "../models/tournament.model.js";
+import matchModel from "../models/match.model.js";
 
 class TournamentServices{
     async createTournament(data){
@@ -48,12 +51,44 @@ class TournamentServices{
         }
     }
 
-    async makePairs(id) {
+    // async makePairs(id) {
+    //     try {
+    //         const data = await TournamentModel.findById({_id : id})
+    //         return data
+    //     }catch(e){
+    //         return { code: 400, type : 'error', message: "Some error", error: e.message  };
+    //     }
+    // }
+
+    async createMatch(id, result) {
         try {
-            const data = await TournamentModel.findById({_id : id})
-            return data
+            const round = await roundModel.findById({_id : id})
+            const tournamentData = await tournamentModel.findById({_id : round.tournamentId})
+
+            if(tournamentData.participants.length === 1){
+                return {code : 400, type : "fail", message : "Not enough players"}
+            }
+            const whitePlayer = tournamentData.participants[0]
+            const blackPlayer = tournamentData.participants[1]
+
+
+            const match = await matchModel.create({roundId : id, whitePlayer, blackPlayer, result});
+
+            const roundResData = await roundModel.updateOne(
+                { _id: id },
+                { $push: { matches: match } }
+            );
+            if(roundResData.modifiedCount !== 1) {
+                return { code : 400, type : "fail", message : "Round not found or updated" }
+            }
+
+            await tournamentData.updateOne(
+                { _id: round.tournamentId },
+                { $push: { rounds: roundResData } }
+            );
+            return {status : "ok", code : 201, message : "Match successfully created"}
         }catch(e){
-            return { code: 400, type : 'error', message: "Some error", error: e.message  };
+            return { code : 400, type : "error", message : "Some error", error : e.message }
         }
     }
 }
