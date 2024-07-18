@@ -83,7 +83,6 @@ const validateParticipants = () => [
         }),
 ]
 
-
 export {
     validatePlayer,
     validateEmail,

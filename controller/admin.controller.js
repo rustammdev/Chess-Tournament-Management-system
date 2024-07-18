@@ -2,14 +2,11 @@ import AdminServices from '../services/admin.services.js';
 import {validationResult} from "express-validator";
 import adminsServices from "../services/admin.services.js";
 import TournamentServices from "../services/tournament.services.js";
-import UserServices from "../services/user.services.js";
 
 
 class AdminController {
   async welcome(req, res) {
     try {
-      // const DataCookies = jwt.decode(req.cookies.accessToken, process.env.JWT_ACCES_SECRET);
-      // // let  user = await userServices.registeration(email, password);
       res.status(200).json({status : "ok", code : 200, message : "You are welcome!"});
     }catch (e) {
       return res.status(400).json({status : "ok", code : 400, message: e.message});

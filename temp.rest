@@ -1,14 +1,14 @@
+### Root
 GET http://localhost:7000/api
-
 
 ### User register
 POST localhost:7000/api/register
 Content-Type: application/json
 
 {
-  "email" : "rustam2@gmail.com",
-  "password" : "test1",
-  "role" : "admin"
+  "email" : "string",
+  "password" : "string",
+  "role" : "admin || user"
 }
 
 ### Login
@@ -16,25 +16,29 @@ POST localhost:7000/api/login
 Content-Type: application/json
 
 {
-  "email" : "test@gmail.com",
-  "password" : "test1"
+  "email" : "string",
+  "password" : "string"
 }
 
 ### Logout
+## accesToken orqali
 POST localhost:7000/api/logout
 Content-Type: application/json
 
 
 ### Admin
+## Admin root
 GET localhost:7000/api/admin
 Content-Type: application/json
 
 ### Admin: Get players
+## Required: Admin role
 GET localhost:7000/api/admin/players
 Content-Type: application/json
 
 ### Admin: Get Player
-GET localhost:7000/api/admin/players/66980cf412b91db82d831c62
+## Required: player id
+GET localhost:7000/api/admin/players/[:id]
 Content-Type: application/json
 
 ### Admin: Add player
@@ -49,6 +53,7 @@ Content-Type: application/json
 }
 
 ### Admin: Delete Player
+## Required: player name
 DELETE localhost:7000/api/admin/players
 Content-Type: application/json
 
@@ -57,7 +62,8 @@ Content-Type: application/json
 }
 
 ### Admin: Update Player
-PUT localhost:7000/api/admin/players/6698972dfd97f63bbd303b87
+## Required: player id
+PUT localhost:7000/api/admin/players/[:id]
 Content-Type: application/json
 
 {
@@ -76,7 +82,8 @@ Content-Type: application/json
 }
 
 ### Admin: Add Players tournament
-PUT localhost:7000/api/admin/tournaments/66989f27f3ac26b168cf7f8c
+## Required: tournaments id
+PUT localhost:7000/api/admin/tournaments/[:id]
 Content-Type: application/json
 
 {
@@ -85,8 +92,8 @@ Content-Type: application/json
 
 
 ### Create Round
-# turnir id
-POST localhost:7000/api/admin/round/6698f03a9728a4059af940c8
+# Required:  turnir id
+POST localhost:7000/api/admin/round/[:id]
 Content-Type: application/json
 
 {
@@ -94,10 +101,15 @@ Content-Type: application/json
 }
 
 ### Create Match
-# round id
-POST localhost:7000/api/admin/match/6698f0739728a4059af940cb
+# Required: round id
+POST localhost:7000/api/admin/match/[:id]
 Content-Type: application/json
 
 {
-  "result" : "1-0"
+  "result" : "1/2-1/2 || 1-0 || 0-1"
 }
+
+### Lidearboard
+# Required: turnit id
+GET localhost:7000/api/admin/match/liderboard/[:id]
+Content-Type: application/json

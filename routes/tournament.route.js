@@ -19,6 +19,10 @@ route
     // @route POST '/api/match/:id'
     // @access Private, only admins
     .post("/match/:id", authMiddleware, adminMiddleware, tournamentController.CreateMatch)
+    // @desc Liderboard
+    // @route GET '/api/match/liderboard/:id'
+    // @access Private, only admins
+    .get('/match/liderboard/:id', authMiddleware, adminMiddleware, tournamentController.liderboard)
 
 
 export default route;

@@ -32,7 +32,6 @@ class UserServices {
         accessToken: tokens.accessToken,
       };
     } catch (e) {
-      console.log(e.message);
       return { code: 403, message: "Failed to create user" };
     }
   }
@@ -66,7 +65,6 @@ class UserServices {
         ...tokens,
       };
     } catch (e) {
-      console.log(e);
       return { code: 400, message: "Some error" };
     }
   }

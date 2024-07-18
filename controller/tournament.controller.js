@@ -1,8 +1,6 @@
 import roundModel from "../models/round.model.js";
-import matchModel from "../models/match.model.js";
-import tournamentModel from "../models/tournament.model.js";
-import MatchModel from "../models/match.model.js";
 import tournamentServices from "../services/tournament.services.js";
+import Leaderboard from '../services/liderboard.services.js';
 
 class TournamentController {
     async CreateRound(req, res) {
@@ -25,6 +23,17 @@ class TournamentController {
             res.status(match.code).json(match);
         }catch (e) {
             return res.status(400).json({code : 400, type : "error", message: e.message});
+        }
+    }
+
+    async liderboard(req, res) {
+        try {
+            const tournamentId = req.params.id
+            const leaderboard = new Leaderboard(tournamentId);
+            const results = await leaderboard.generate();
+            res.status(200).json({results : results});
+        } catch (error) {
+            res.status(500).json({ message: "Liderboard yaratishda xatolik yuz berdi", error: error.message });
         }
     }
 }
