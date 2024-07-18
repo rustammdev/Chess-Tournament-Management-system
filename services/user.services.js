@@ -80,6 +80,7 @@ class UserServices {
       return { code: 400, message: "Some error" };
     }
   }
+
 }
 
 export default new UserServices();

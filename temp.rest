@@ -57,7 +57,7 @@ Content-Type: application/json
 }
 
 ### Admin: Update Player
-PUT localhost:7000/api/admin/players/66980cf412b91db82d831c62
+PUT localhost:7000/api/admin/players/6698972dfd97f63bbd303b87
 Content-Type: application/json
 
 {
@@ -69,8 +69,16 @@ POST localhost:7000/api/admin/tournaments
 Content-Type: application/json
 
 {
-  "name": "Summer Championship",
+  "name": "Winter Championship 2024",
   "startDate": "2024-08-01",
   "endDate": "2024-08-10",
   "participants": ["669803168da520e0107c14b5", "6698032f8da520e0107c14b7"]
+}
+
+### Admin: Add Players tournament
+PUT localhost:7000/api/admin/tournaments/66989f27f3ac26b168cf7f8c
+Content-Type: application/json
+
+{
+  "participants" : "669803998da520e0107c14cb"
 }
